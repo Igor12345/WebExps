@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfWebApp", "EfWebApp\EfWebApp.csproj", "{F763BE20-AEE3-4316-80D0-4DCD28B31FF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfBooksModel", "EfBooksModel\EfBooksModel.csproj", "{A82C892C-3D22-49D7-8401-551950357ED7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F763BE20-AEE3-4316-80D0-4DCD28B31FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F763BE20-AEE3-4316-80D0-4DCD28B31FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F763BE20-AEE3-4316-80D0-4DCD28B31FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F763BE20-AEE3-4316-80D0-4DCD28B31FF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A82C892C-3D22-49D7-8401-551950357ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A82C892C-3D22-49D7-8401-551950357ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A82C892C-3D22-49D7-8401-551950357ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A82C892C-3D22-49D7-8401-551950357ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
