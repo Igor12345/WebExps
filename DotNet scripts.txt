@@ -7,3 +7,8 @@ dotnet dev-certs https --trust
 dotnet build
 
  dotnet new classlib -n EfBooksModel
+ 
+ 
+ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+ 
+ added Entity Framework Core UI to Rider
