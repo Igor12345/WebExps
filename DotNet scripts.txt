@@ -18,3 +18,5 @@ working with EF from Terminal
  dotnet ef .... -h
  
  dotnet ef migrations add InitialDbCreation
+
+dotnet ef database update DecreaseColumns  //name of the migration to which update Db
