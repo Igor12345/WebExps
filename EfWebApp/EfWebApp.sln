@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfWebApp", "EfWebApp\EfWebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfBooksModel", "EfBooksModel\EfBooksModel.csproj", "{A82C892C-3D22-49D7-8401-551950357ED7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfBooksDataAccess", "EfBooksDataAccess\EfBooksDataAccess.csproj", "{C4A40424-A637-4F16-A4C2-8E63E3533C6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{A82C892C-3D22-49D7-8401-551950357ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A82C892C-3D22-49D7-8401-551950357ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A82C892C-3D22-49D7-8401-551950357ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4A40424-A637-4F16-A4C2-8E63E3533C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4A40424-A637-4F16-A4C2-8E63E3533C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4A40424-A637-4F16-A4C2-8E63E3533C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4A40424-A637-4F16-A4C2-8E63E3533C6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
