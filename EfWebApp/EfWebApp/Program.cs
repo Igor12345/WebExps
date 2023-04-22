@@ -1,8 +1,18 @@
+using EfBooksDataAccess;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+string connection = builder.Configuration.GetConnectionString("Books");
+
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+builder.Services.AddDbContext<BooksContext>(options =>
+{
+    options.UseSqlServer(connection);
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
