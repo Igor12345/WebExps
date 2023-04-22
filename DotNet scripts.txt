@@ -12,3 +12,9 @@ dotnet build
  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
  
  added Entity Framework Core UI to Rider
+ 
+
+working with EF from Terminal
+ dotnet ef .... -h
+ 
+ dotnet ef migrations add InitialDbCreation
