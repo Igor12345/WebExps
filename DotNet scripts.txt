@@ -1,0 +1,6 @@
+﻿Creating new app
+dotnet new webapi --name EfWebApp
+
+dotnet build
+
+dotnet run
