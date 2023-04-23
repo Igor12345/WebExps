@@ -20,3 +20,11 @@ working with EF from Terminal
  dotnet ef migrations add InitialDbCreation
 
 dotnet ef database update DecreaseColumns  //name of the migration to which update Db
+
+
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1234qwerASDF" -p 1433:1433 --name sql_docker1 --hostname sql_docker1 -d mcr.microsoft.com/mssql/server:2022-latest
+
+connection string:
+Server=localhost\sql_docker1,1433;Initial Catalog=EfBooks;User ID=sa;Password=1234qwerASDF;TrustServerCertificate=True
