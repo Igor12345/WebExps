@@ -9,6 +9,7 @@ string connection = builder.Configuration.GetConnectionString("Books");
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BooksContext>(options =>
 {
     options.UseSqlServer(connection);
@@ -24,12 +25,19 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseExceptionHandler("/Home/Error");
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllers();
+// app.MapRazorPages();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
