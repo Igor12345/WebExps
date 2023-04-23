@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EfBooksDataAccess;
 using EfBooksModel.Models.Library;
+using EfWebApp.Models;
 
 namespace EfWebApp.Controllers
 {
@@ -22,9 +23,9 @@ namespace EfWebApp.Controllers
         // GET: Books
         public async Task<IActionResult> Index()
         {
-              return _context.Books != null ? 
-                          View(await _context.Books.ToListAsync()) :
-                          Problem("Entity set 'BooksContext.Books'  is null.");
+            return _context.Books != null
+                ? View((await _context.Books.ToListAsync()).Select(b => new BookViewModel(b)))
+                : Problem("Entity set 'BooksContext.Books'  is null.");
         }
 
         // GET: Books/Details/5
@@ -42,7 +43,9 @@ namespace EfWebApp.Controllers
                 return NotFound();
             }
 
-            return View(book);
+            BookViewModel viewModel = new BookViewModel(book);
+
+            return View(viewModel);
         }
 
         // GET: Books/Create
@@ -88,7 +91,9 @@ namespace EfWebApp.Controllers
                     Value = a.Id.ToString(),
                     Text =  a.Name
                 }).ToList();
-            return View((book, authors));
+            BookViewModel viewModel = new BookViewModel(book) { AllAuthors = authors };
+            
+            return View(viewModel);
         }
 
         // POST: Books/Edit/5
@@ -96,18 +101,30 @@ namespace EfWebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Year")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Year, Authors")] CreateBookModel book)
         {
             if (id != book.Id)
             {
                 return NotFound();
             }
 
+            Book? originBook = null;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(book);
+                    originBook = await _context.Books.FindAsync(id);
+                    originBook.Title = book.Title;
+                    originBook.Year = book.Year;
+
+                    if (book.Authors.Any())
+                    {
+                        var author = await _context.Authors.FindAsync(book.Authors.First());
+                        if (author != null && originBook.Authors.All(a => a.Id != author.Id))
+                            originBook.Authors.Add(author);
+                    } 
+                    
+                    _context.Update(originBook);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -124,13 +141,14 @@ namespace EfWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             
-            List<SelectListItem> authors = _context.Authors.Select(a => 
+            List<SelectListItem> allAuthors = _context.Authors.Select(a => 
                 new SelectListItem 
                 {
                     Value = a.Id.ToString(),
                     Text =  a.Name
                 }).ToList();
-            return View((book, authors));
+            BookViewModel viewModel = new BookViewModel(originBook) { AllAuthors = allAuthors };
+            return View(viewModel);
         }
 
         // GET: Books/Delete/5

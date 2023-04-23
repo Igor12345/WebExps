@@ -1,4 +1,4 @@
-@model IEnumerable<EfBooksModel.Models.Library.Book>
+@model IEnumerable<BookViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Book.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Year)
+                @Html.DisplayNameFor(model => model.Book.Year)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Authors)
+                @Html.DisplayNameFor(model => model.Book.Authors)
             </th>
             <th></th>
         </tr>
@@ -28,18 +28,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.Book.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Year)
+                @Html.DisplayFor(modelItem => item.Book.Year)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AllAuthors)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Book.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Book.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Book.Id">Delete</a>
             </td>
         </tr>
 }

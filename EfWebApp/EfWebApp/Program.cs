@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 string connection = builder.Configuration.GetConnectionString("Books");
 
-builder.Services.AddAuthorization();
-builder.Services.AddControllers();
+// builder.Services.AddAuthorization();
+// builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BooksContext>(options =>
 {
@@ -21,18 +21,22 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+}
+else
+{
     app.UseExceptionHandler("/Home/Error");
 }
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
-app.UseAuthorization();
 
 // app.MapRazorPages();
 
