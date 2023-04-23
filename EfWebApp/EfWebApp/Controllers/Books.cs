@@ -36,7 +36,7 @@ namespace EfWebApp.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Books
+            var book = await _context.Books.Include(b => b.Authors)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (book == null)
             {
@@ -78,7 +78,7 @@ namespace EfWebApp.Controllers
                 return NotFound();
             }
 
-            var book = await _context.Books.FindAsync(id);
+            var book = await _context.Books.Include(b => b.Authors).FirstOrDefaultAsync(b => b.Id == id);
             
             if (book == null)
             {
@@ -113,7 +113,7 @@ namespace EfWebApp.Controllers
             {
                 try
                 {
-                    originBook = await _context.Books.FindAsync(id);
+                    originBook = await _context.Books.Include(b => b.Authors).FirstOrDefaultAsync(b => b.Id == id);
                     originBook.Title = book.Title;
                     originBook.Year = book.Year;
 
