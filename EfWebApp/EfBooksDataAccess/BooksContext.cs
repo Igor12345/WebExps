@@ -12,7 +12,7 @@ public class BooksContext: DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=EfBooks;Integrated Security=true;");
+        optionsBuilder.UseSqlServer(@"Server=localhost\sql_docker1,1433;Initial Catalog=EfBooks;User ID=sa;Password=1234qwerASDF;TrustServerCertificate=True");
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
