@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ef-books-deployment
+  labels:
+    app: ef-books-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ef-books-deployment
+  template:
+    metadata:
+      name: ef-books-deployment
+      labels:
+        app: ef-books-deployment
+    spec:
+      containers:
+        - name: ef-books-deployment
+          image: docker:latest
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always

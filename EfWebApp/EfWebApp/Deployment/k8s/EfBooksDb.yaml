@@ -1,0 +1,44 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: ef-books-db-service
+spec:
+  selector:
+    app: ef-books-db
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ef-books-db
+  labels:
+    app: ef-books-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ef-books-db
+  template:
+    metadata:
+      name: ef-books-db
+      labels:
+        app: ef-books-db
+    spec:
+      containers:
+        - name: ef-books-db
+          image: mcr.microsoft.com/mssql/server:2022-latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: MSSQL_SA_PASSWORD
+              value: "1234qwerASDF"
+          ports:
+            - containerPort: 1433              
+              
+      restartPolicy: Always
+      
