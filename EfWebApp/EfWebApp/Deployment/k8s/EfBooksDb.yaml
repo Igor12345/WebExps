@@ -43,8 +43,14 @@ spec:
                 secretKeyRef:
                   name: sql-env
                   key: MSSQL_SA_PASSWORD
+          volumeMounts:
+            - mountPath: /var/opt/mssql/data
+              name: mssqldb              
           ports:
-            - containerPort: 1433              
-              
+            - containerPort: 1433           
+      volumes:
+        - name: mssqldb
+          persistentVolumeClaim:
+            claimName: ef-local-pvc
       restartPolicy: Always
       
