@@ -32,5 +32,18 @@ Server=localhost\sql_docker1,1433;Initial Catalog=EfBooks;User ID=sa;Password=12
 
 Added Kubernetes﻿ plugin 
 
-creating a deployment with database
+#creating a deployment with database
 kubectl create -f EfBooksDb.yaml
+
+#get list of all resources
+kubectl api-resources
+
+#creating the secret
+
+kubectl create secret generic app1 `
+--from-literal=USERNAME=app1login `
+--from-literal=PASS=VeryStrong
+
+kubectl create secret generic sql-env `
+--from-literal=ACCEPT_EULA=Y `
+--from-literal=MSSQL_SA_PASSWORD=1234qwerASDF

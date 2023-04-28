@@ -34,9 +34,15 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: ACCEPT_EULA
-              value: "Y"
+              valueFrom:
+                secretKeyRef:
+                  name: sql-env
+                  key: ACCEPT_EULA
             - name: MSSQL_SA_PASSWORD
-              value: "1234qwerASDF"
+              valueFrom:
+                secretKeyRef:
+                  name: sql-env
+                  key: MSSQL_SA_PASSWORD
           ports:
             - containerPort: 1433              
               
