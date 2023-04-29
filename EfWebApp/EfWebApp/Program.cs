@@ -2,7 +2,7 @@ using EfBooksDataAccess;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+  
 // Add services to the container.
 
 string connection = builder.Configuration.GetConnectionString("Books")!;
@@ -44,4 +44,15 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<BooksContext>();
+    Console.WriteLine("--> Executing migrations");
+    dbContext.Database.Migrate();
+    Console.WriteLine("--> Database updated");
+}
+
+
 app.Run();
+
