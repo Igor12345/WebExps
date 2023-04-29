@@ -1,0 +1,41 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: ef-books-wa-service
+spec:
+  selector:
+    app: ef-books-wa
+  ports:
+    - protocol: TCP
+      name: https
+      port: 4443
+      targetPort: 443
+    - protocol: TCP
+      name: http
+      port: 80
+      targetPort: 8088
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ef-books-wa
+  labels:
+    app: ef-books-wa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ef-books-wa
+  template:
+    metadata:
+      name: ef-books-wa
+      labels:
+        app: ef-books-wa
+    spec:
+      containers:
+        - name: ef-books-wa
+          image: ef-books-webapp
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      
