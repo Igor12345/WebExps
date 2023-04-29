@@ -12,7 +12,7 @@ string connection = builder.Configuration.GetConnectionString("Books");
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BooksContext>(options =>
 {
-    options.UseSqlServer(connection);
+    options.UseSqlServer(connection, b => b.MigrationsAssembly("EfBooksDataAccess"));
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

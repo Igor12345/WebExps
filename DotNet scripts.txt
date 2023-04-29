@@ -47,3 +47,12 @@ kubectl create secret generic app1 `
 kubectl create secret generic sql-env `
 --from-literal=ACCEPT_EULA=Y `
 --from-literal=MSSQL_SA_PASSWORD=1234qwerASDF
+
+
+After adding b => b.MigrationsAssembly("EfBooksDataAccess") into 
+builder.Services.AddDbContext<BooksContext>(options =>
+{
+    options.UseSqlServer(connection, b => b.MigrationsAssembly("EfBooksDataAccess"));
+});
+
+migrations can and should be called from the main (ASP) project
