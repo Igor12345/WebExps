@@ -56,3 +56,20 @@ builder.Services.AddDbContext<BooksContext>(options =>
 });
 
 migrations can and should be called from the main (ASP) project
+
+
+#The command to build a docker image (start from solution)
+docker build -f .\EfWebApp\Dockerfile  --tag ef-books-webapp .
+
+#Run docker image
+docker run -d -p 8088:80 -p 4443:443 --name ef-books-webapp-cntr ef-books-webapp
+
+#creating Kubernetes﻿ deployment for WA
+kubectl create -f .\EfBooksWebApp.yaml
+
+
+#Set alias in PowerShell
+ Set-Alias -Name k8 -Value kubectl
+
+#Installing the Kubernetes Dashboard
+https://github.com/DanWahlin/DockerAndKubernetesCourseCode/tree/main/samples/dashboard-security
