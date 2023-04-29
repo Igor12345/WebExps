@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-string connection = builder.Configuration.GetConnectionString("Books");
+string connection = builder.Configuration.GetConnectionString("Books")!;
 
 // builder.Services.AddAuthorization();
 // builder.Services.AddControllers();
