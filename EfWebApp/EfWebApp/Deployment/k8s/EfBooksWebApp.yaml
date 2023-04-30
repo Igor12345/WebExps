@@ -33,9 +33,31 @@ spec:
       labels:
         app: ef-books-wa
     spec:
+      restartPolicy: Always
       containers:
         - name: ef-books-wa
           image: ef-books-webapp
           imagePullPolicy: IfNotPresent
-      restartPolicy: Always
-      
+          env:
+            - name: FIRST_ENV
+              value: Value_for_first
+            - name: __NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: __POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: __POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: __POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: __NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
